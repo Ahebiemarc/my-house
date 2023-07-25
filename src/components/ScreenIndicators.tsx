@@ -1,6 +1,7 @@
 import { View, Text } from "react-native";
 import React from "react";
 import { useTheme } from "@react-navigation/native";
+import Colors from "../utils/constants/Colors";
 
 const ScreenIndicators = ({
   count,
@@ -27,7 +28,7 @@ const ScreenIndicators = ({
             height: 8,
             borderRadius: 8,
             backgroundColor:
-              i === activeIndex ? theme.colors.primary : theme.colors.border,
+              i === activeIndex ? Colors.lightRed : theme.colors.border,
           }}
           key={i}
         />

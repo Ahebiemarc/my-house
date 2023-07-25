@@ -1,5 +1,6 @@
 import * as React from "react";
 import Svg, { SvgProps, Path, Circle } from "react-native-svg";
+import Colors from "../../utils/constants/Colors";
 
 const Artwork03 = (props: SvgProps) => (
   <Svg
@@ -22,7 +23,7 @@ const Artwork03 = (props: SvgProps) => (
       fill="#fff"
     />
     <Path
-      fill="#6c63ff"
+      fill={`${Colors.lightRed}`}
       /*style={{
         isolation: "isolate",
       }}*/
@@ -40,7 +41,7 @@ const Artwork03 = (props: SvgProps) => (
       opacity={0.2}
       d="m247.195 126.636 12.941-6.36-.441-.898-11.957 5.877-18.05-47.323-.934.357 18.441 48.347zM2.46 95.437l.345-.939 19.17 7.062-.345.939zM2.46 153.437l.345-.939 19.17 7.062-.345.939zM2.46 215.437l.345-.939 19.17 7.062-.345.939zM12.416 277.418l.433-.902 9.333 4.48-.433.901z"
     />
-    <Circle cx={131.471} cy={342.175} r={43.23} fill="#6c63ff" />
+    <Circle cx={131.471} cy={342.175} r={43.23} fill={`${Colors.lightRed}`} />
     <Path
       fill="#fff"
       d="m127.351 360.424-12.938-16.637 7.524-5.852 6.126 7.877 20.697-21.848 6.921 6.557-28.33 29.903z"

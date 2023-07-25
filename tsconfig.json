@@ -1,6 +1,13 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true
-  }
+    "outDir": "dist",
+    "strict": true,
+    "module": "commonjs",
+    "jsx": "react-native",
+    "declaration": true
+  },
+  "include": [
+    "src/types/**/*"
+  ]
 }

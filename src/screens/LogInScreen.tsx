@@ -147,6 +147,20 @@ const LogInScreen = ({ navigation }: RootStackScreenProps<"LogInScreen">) => {
                 onPress={() => navigation.navigate("LogInScreen")}
               />
             </Animated.View>
+            <Animated.View
+              entering={FadeInDown.delay(600).duration(1000).springify()}
+
+            >
+              <Text 
+              onPress={() => navigation.navigate('SignUpScreen')}
+              style={{
+                opacity: 0.5,
+                marginTop: 10,
+                fontSize: 17,
+                textAlign: 'right',
+                color: 'blue'
+              }}>create an account</Text>
+            </Animated.View>
           </View>
         </View>
       </SafeAreaView>
@@ -156,4 +170,4 @@ const LogInScreen = ({ navigation }: RootStackScreenProps<"LogInScreen">) => {
 
 export default LogInScreen;
 
-// Thanks for watching 😃
+

@@ -1,3 +1,4 @@
+import React, { useMemo } from "react";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, useColorScheme } from "react-native";
 import {
@@ -8,7 +9,7 @@ import {
 } from "@react-navigation/native";
 import RootNavigator from "./src/navigators/RootNavigator";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { useMemo } from "react";
+import TabNavigator from "./src/navigators/TabNavigator";
 
 export default function App() {
   // Let's add dark mode

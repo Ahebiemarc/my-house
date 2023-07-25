@@ -6,17 +6,23 @@ import {
 import IntroScreen01 from "../screens/IntroScreen01";
 import IntroScreen02 from "../screens/IntroScreen02";
 import LogInScreen from "../screens/LogInScreen";
+import SignUpScreen from "../screens/SignUpScreen";
+import TabNavigator from "./TabNavigator";
 
 export type RootStackParamList = {
-  IntroScreen01: undefined;
-  IntroScreen02: undefined;
-  LogInScreen: undefined;
+  IntroScreen01: undefined,
+  IntroScreen02: undefined,
+  LogInScreen: undefined,
+  SignUpScreen: undefined,
+  TabNavigator: undefined,
 };
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 
 export type RootStackScreenProps<T extends keyof RootStackParamList> =
   NativeStackScreenProps<RootStackParamList, T>;
+
+
 
 const RootNavigator = () => {
   return (
@@ -30,6 +36,8 @@ const RootNavigator = () => {
         <RootStack.Screen name="IntroScreen01" component={IntroScreen01} />
         <RootStack.Screen name="IntroScreen02" component={IntroScreen02} />
         <RootStack.Screen name="LogInScreen" component={LogInScreen} />
+        <RootStack.Screen name="SignUpScreen" component={SignUpScreen} />
+        <RootStack.Screen name="TabNavigator" component={TabNavigator} />
       </RootStack.Group>
     </RootStack.Navigator>
   );
