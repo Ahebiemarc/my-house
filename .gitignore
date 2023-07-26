@@ -1,4 +1,5 @@
 node_modules/
+assets/img
 .expo/
 dist/
 npm-debug.*
