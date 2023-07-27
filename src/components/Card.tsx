@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react'
+import React, {FC, useRef, useState} from 'react'
 import { Image, View, FlatList, Dimensions, StyleSheet, TouchableOpacity, Animated, Text } from 'react-native'
 import Icons from "@expo/vector-icons/MaterialIcons";
 import Colors from '../utils/constants/Colors';
@@ -64,7 +64,16 @@ const indicatonPosition = (X: number)  =>  {
 
 }
 
-const Card = () => {
+interface cardProps {
+  location: string;
+  title: string;
+  date: string;
+  rent: string;
+  price: string;
+
+}
+
+const Card: FC<cardProps> = ({location, title, date, rent, price}) => {
 
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -77,7 +86,9 @@ const Card = () => {
   }
   return (
     <View  style={{
-      marginBottom: 48
+      marginBottom: 48,
+       //marginTop: -10,
+       //height: ITEM_HEIGHT - 310,
     }}>
       <View style={{
         height: ITEM_HEIGHT-310,
@@ -154,7 +165,7 @@ const Card = () => {
                 fontWeight: 'bold'
               }}
             >
-              {product.location}
+              {location}
             </Text>
           </View>
           <View 
@@ -168,7 +179,7 @@ const Card = () => {
                 fontWeight: "400"
               }}
             > 
-              {product.date} {product.title} 
+              {date} {title} 
               </Text>
             <Text
             style={{
@@ -177,7 +188,7 @@ const Card = () => {
               fontWeight: "600"
             }}
             > 
-              {product.price} {product.rent}
+              {price} {rent}
             </Text>
           </View>
         </View>

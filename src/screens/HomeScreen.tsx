@@ -7,14 +7,15 @@ import Cards from '../components/Cards';
 
 const HomeScreen = () => {
   return (
-    <SafeAreaView 
-    style={{flex: 1}}>
-      <View>
+    <View
+    style={{
+      flex: 1
+  }}
+    >
         <Search />
         <Categories />
         <Cards />
-      </View>
-    </SafeAreaView>
+    </View>
   )
 }
 
