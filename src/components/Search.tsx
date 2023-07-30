@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { StyleSheet, TextInput, View,TouchableOpacity } from 'react-native'
 import Icons from "@expo/vector-icons/MaterialIcons";
 import Colors from '../utils/constants/Colors';
-import { shadow } from '../common/Style';
+import { shadow } from '../common/StyleShadow';
 
 
 

@@ -1,6 +1,6 @@
 import { View, SafeAreaView, TouchableOpacity } from "react-native";
 import React from "react";
-import { RootStackScreenProps } from "../navigators/RootNavigator";
+import { RootStackParamList } from "../navigators/RootNavigator";
 import { useTheme } from "@react-navigation/native";
 import PrimaryButton from "../components/PrimaryButton";
 import ScreenIndicators from "../components/ScreenIndicators";
@@ -9,9 +9,12 @@ import Icons from "@expo/vector-icons/MaterialIcons";
 import Animated, { FadeInDown, FadeInUp } from "react-native-reanimated";
 import Artwork02 from "../components/artworks/Artwork02";
 
-const IntroScreen02 = ({
-  navigation,
-}: RootStackScreenProps<"IntroScreen02">) => {
+import {
+  NativeStackScreenProps,
+} from "@react-navigation/native-stack";
+type IntroScreen02Props = NativeStackScreenProps<RootStackParamList, 'IntroScreen02'>
+
+const IntroScreen02: React.FC<IntroScreen02Props> = ({navigation}) => {
   const theme = useTheme();
   return (
     <SafeAreaView style={{ backgroundColor: theme.colors.card, flex: 1 }}>

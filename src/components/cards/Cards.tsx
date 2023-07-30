@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { RefreshControl, View, FlatList,Dimensions, StyleSheet, Animated } from 'react-native'
 import Card from './Card';
-import Colors from '../utils/constants/Colors';
+import Colors from '../../utils/constants/Colors';
 
 
 const {width, height} = Dimensions.get('screen');
@@ -55,6 +55,13 @@ const Cards = () => {
     const listContainerRef = useRef<View>(null);
 
     //Cela permet de bloquer l'animation lorsque la FlatList est défilée au-delà de la hauteur de l'en-tête (HEADER_HEIGHT).
+    /*
+     est un objet d'animation créé en utilisant la fonction Animated.diffClamp 
+     dans le code précédent. Cet objet combine les valeurs scrollY et offsetAnim 
+     et limite le résultat de l'addition entre ces deux valeurs à 
+     une fourchette spécifiée. Cette fourchette est définie entre 0 et la valeur 
+     de HEADER_HEIGHT.
+     */
     const clampScroll = Animated.diffClamp(
         Animated.add(
             scrollY.interpolate({
@@ -148,6 +155,12 @@ const Cards = () => {
      * en fonction de la valeur scrollY. Cela permet de masquer 
      * et de montrer l'en-tête pendant le défilement.
     */
+
+    /*
+    La fonction interpolate est utilisée pour créer une relation de correspondance 
+    entre la valeur de clampScroll (qui est limitée entre 0 et HEADER_HEIGHT) 
+    et une nouvelle plage de valeurs.
+     */
     const Translate: Animated.AnimatedInterpolation<string | number> = clampScroll.interpolate({
         inputRange: [0, HEADER_HEIGHT],
         outputRange: [0, -HEADER_HEIGHT],
@@ -213,7 +226,7 @@ const Cards = () => {
   )
 }
 
-const styles = StyleSheet.create({
+/*const styles = StyleSheet.create({
     header: {
       height: HEADER_HEIGHT,
       position: 'absolute',
@@ -225,6 +238,6 @@ const styles = StyleSheet.create({
       zIndex: 1,
       marginBottom: 15
     },
-  });
+  });*/
 
 export default Cards

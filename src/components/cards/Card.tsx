@@ -1,8 +1,8 @@
 import React, {FC, useRef, useState} from 'react'
 import { Image, View, FlatList, Dimensions, StyleSheet, TouchableOpacity, Animated, Text } from 'react-native'
 import Icons from "@expo/vector-icons/MaterialIcons";
-import Colors from '../utils/constants/Colors';
-import { minMaxImg } from '../utils/constants/Type';
+import Colors from '../../utils/constants/Colors';
+import { minMaxImg } from '../../utils/constants/Type';
 
 const {width, height} = Dimensions.get('screen');
 

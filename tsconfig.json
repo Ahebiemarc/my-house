@@ -5,7 +5,9 @@
     "strict": true,
     "module": "commonjs",
     "jsx": "react-native",
-    "declaration": true
+    "declaration": true,
+    "esModuleInterop": true,
+    "moduleResolution": "Node"
   },
   "include": [
     "src/types/**/*"

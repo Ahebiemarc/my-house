@@ -3,11 +3,11 @@ import { View, Text } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Search from '../components/Search';
 import Categories from '../components/Categories';
-import Cards from '../components/Cards';
+import Cards from '../components/cards/Cards';
 
 const HomeScreen = () => {
   return (
-    <View
+    <SafeAreaView
     style={{
       flex: 1
   }}
@@ -15,7 +15,7 @@ const HomeScreen = () => {
         <Search />
         <Categories />
         <Cards />
-    </View>
+    </SafeAreaView>
   )
 }
 

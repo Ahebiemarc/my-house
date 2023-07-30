@@ -2,12 +2,14 @@ import React from "react";
 import {
   NativeStackScreenProps,
   createNativeStackNavigator,
+  
 } from "@react-navigation/native-stack";
 import IntroScreen01 from "../screens/IntroScreen01";
 import IntroScreen02 from "../screens/IntroScreen02";
 import LogInScreen from "../screens/LogInScreen";
 import SignUpScreen from "../screens/SignUpScreen";
 import TabNavigator from "./TabNavigator";
+import ChatScreen from "../screens/ChatScreen";
 
 export type RootStackParamList = {
   IntroScreen01: undefined,
@@ -15,12 +17,13 @@ export type RootStackParamList = {
   LogInScreen: undefined,
   SignUpScreen: undefined,
   TabNavigator: undefined,
+  ChatScreen: {userName: string, photo: string},
 };
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 
-export type RootStackScreenProps<T extends keyof RootStackParamList> =
-  NativeStackScreenProps<RootStackParamList, T>;
+/*export type RootStackScreenProps<T extends keyof RootStackParamList> =
+  NativeStackScreenProps<RootStackParamList, T>;*/
 
 
 
@@ -38,6 +41,7 @@ const RootNavigator = () => {
         <RootStack.Screen name="LogInScreen" component={LogInScreen} />
         <RootStack.Screen name="SignUpScreen" component={SignUpScreen} />
         <RootStack.Screen name="TabNavigator" component={TabNavigator} />
+        <RootStack.Screen name="ChatScreen" component={ChatScreen} />
       </RootStack.Group>
     </RootStack.Navigator>
   );
