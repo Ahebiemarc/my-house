@@ -16,18 +16,18 @@ const DOT_INDICATOR:number = DOT_SIZE + DOT_SPACING+2;
 const SPACING_INDICATOR:number = 5;
 
 const images: minMaxImg = [
-  require('../../assets/img/pfe/9bb254fc-866e-41de-9aa7-17fd19a541a0.webp'),
-  require('../../assets/img/pfe/1000x620xc.webp'),
-  require('../../assets/img/pfe/dc006023-a4c2-449a-adc3-de5480c46d54.webp'),
-  require('../../assets/img/pfe/img4.png'),
-  require('../../assets/img/pfe/img5.jpg'),
-  require('../../assets/img/pfe/dc006023-a4c2-449a-adc3-de5480c46d54.webp'),
-  require('../../assets/img/pfe/dc006023-a4c2-449a-adc3-de5480c46d54.webp'),
-  require('../../assets/img/pfe/dc006023-a4c2-449a-adc3-de5480c46d54.webp'),
-  require('../../assets/img/pfe/img4.png'),
-  require('../../assets/img/pfe/img5.jpg'),
-  require('../../assets/img/pfe/dc006023-a4c2-449a-adc3-de5480c46d54.webp'),
-  require('../../assets/img/pfe/dc006023-a4c2-449a-adc3-de5480c46d54.webp'),
+  require('../../../assets/img/pfe/9bb254fc-866e-41de-9aa7-17fd19a541a0.webp'),
+  require('../../../assets/img/pfe/1000x620xc.webp'),
+  require('../../../assets/img/pfe/dc006023-a4c2-449a-adc3-de5480c46d54.webp'),
+  require('../../../assets/img/pfe/img4.png'),
+  require('../../../assets/img/pfe/img5.jpg'),
+  require('../../../assets/img/pfe/dc006023-a4c2-449a-adc3-de5480c46d54.webp'),
+  require('../../../assets/img/pfe/dc006023-a4c2-449a-adc3-de5480c46d54.webp'),
+  require('../../../assets/img/pfe/dc006023-a4c2-449a-adc3-de5480c46d54.webp'),
+  require('../../../assets/img/pfe/img4.png'),
+  require('../../../assets/img/pfe/img5.jpg'),
+  require('../../../assets/img/pfe/dc006023-a4c2-449a-adc3-de5480c46d54.webp'),
+  require('../../../assets/img/pfe/dc006023-a4c2-449a-adc3-de5480c46d54.webp'),
   
 
 ];

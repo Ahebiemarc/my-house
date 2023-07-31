@@ -1,13 +1,15 @@
-import React, { useRef } from 'react'
-import { View, Text, Dimensions, FlatList, Image, TouchableOpacity, SafeAreaView, Animated } from 'react-native'
+import React, { useCallback, useRef, useState } from 'react'
+import { View, Dimensions, FlatList, SafeAreaView } from 'react-native'
 import {faker} from '@faker-js/faker';
-import { card, container, messageText, postTime, textSection, userImg, userImgWrapper, userInfo, userInfoText, userName } from '../common/Message';
-//import { Ellipse } from 'react-native-svg';
+import { container} from '../common/Message';
 import { RootStackParamList } from '../navigators/RootNavigator';
 import {
   NativeStackScreenProps,
 } from "@react-navigation/native-stack";
-
+import { CardMessage} from '../components/cardMessage/CardMessage';
+import Animated from 'react-native-reanimated';
+ 
+import {ItemMessageProps} from '../utils/constants/Interface'
 
 const {height, width} = Dimensions.get('screen');
 
@@ -20,37 +22,14 @@ const {height, width} = Dimensions.get('screen');
   date: faker.date.recent()
 }))*/
 
-interface CardMessageProps {
-  image: string;
-  name: string;
-  message: string;
-  date: Date;
-  scale: any;
-  //navigation: RootStackScreenProps<'TabNavigator'>;
-  onPress : ()=> void
-}
 
-interface ItemProps {
-  id: string;
-  image: string;
-  name: string;
-  message: string;
-  date: Date;
 
-}
+
 
 type InboxScreenProps = NativeStackScreenProps<RootStackParamList, 'TabNavigator'>;
 
-/*function generateRandomName(): string {
-  return `${faker.person.fullName()}`;
-}*/
 
-/*function generateRandomImageURL(size: string): string {
-  const randomNumber = Math.floor(Math.random() * 1000);
-  return `https://loremflickr.com/${size}/${size}/cat?random=${randomNumber}`;
-}*/
-
-const DATA: ItemProps[] = Array.from(Array(50).keys()).map((_, index) => ({
+const DATA: ItemMessageProps[] = Array.from(Array(50).keys()).map((_, index) => ({
   id: index.toString(),
   image: faker.image.urlLoremFlickr(),
   name: faker.person.firstName(),
@@ -65,57 +44,9 @@ const AVATAR_SIZE = 70;
 const ITEM_SIZE = AVATAR_SIZE + SPACING - 3;
 
 
-function formatDateToDayAgo(date: Date): string {
-  const now:Date = new Date();
-  const diff: number = date.getTime() - now.getTime();
 
-  // convertir le temps en millisecondes en jours
-  //const diffInDays = Math.floor(diff / (24 * 60 * 60  * 1000));
-  const diffInDays = Math.floor(Math.abs(diff) / (24 * 60 * 60 * 1000));
-  if(diffInDays === 0){
-    return 'Today'
-  }else if (diffInDays === 1) {
-    return 'Yesterday';
-  } else {
-    return `${diffInDays} days ago`;
-  }
-  
-}
 
-const CardMessage : React.FC<CardMessageProps> = ({image, name, message, date, scale, onPress}) : JSX.Element =>{
 
-  const truncatedMessage = message.slice(0, 50) + '...'; // garder les 50 premiers caractères et ajouter les trois points
-  
-
-  return (
-    <Animated.View
-    style={{
-      transform: [{scale}]
-    }}
-    >
-      <TouchableOpacity style={card}
-      onPress={onPress}
-      >
-      <View style={userInfo}>
-        <View style={userImgWrapper}>
-          <Image source={{uri: image}} style={userImg} />
-        </View>
-        <View style={textSection}>
-          <View style={userInfoText}>
-            <Text style={userName}>
-              {name}
-            </Text>
-            <Text style={postTime}>
-              {formatDateToDayAgo(date)}
-            </Text>
-          </View>
-          <Text style={messageText}>{truncatedMessage}</Text>
-        </View>
-      </View>
-    </TouchableOpacity>
-    </Animated.View>
-  )
-}
 
 
 
@@ -123,13 +54,24 @@ const InboxScreen: React.FC<InboxScreenProps> = ({navigation}) : JSX.Element => 
 
   const scrollY =  useRef(new Animated.Value(0)).current;
 
+  const [messagesBulle, setMessagesBulle] = useState(DATA)
+
+  const onDismiss = useCallback((messageBulle: ItemMessageProps) => {
+    setMessagesBulle((messagesBulle) => {
+      //console.log(messagesBulle.length);
+      return messagesBulle.filter((item) => item.id !== messageBulle.id
+      )})
+  }, [])
+  
+  console.log(messagesBulle.length);
+  
 
   return (
     <SafeAreaView 
     style={container}
     >
         <Animated.FlatList 
-        data={DATA}
+        data={messagesBulle}
         keyExtractor={item => item.id}
         scrollEventThrottle={16}
         showsVerticalScrollIndicator={false}
@@ -147,10 +89,14 @@ const InboxScreen: React.FC<InboxScreenProps> = ({navigation}) : JSX.Element => 
           ];
           const scale = scrollY.interpolate({
             inputRange,
-            outputRange: [1, 1, 1,0]
-          }) 
+            outputRange: [1, 1, 1, 0] // Ajustez cette plage selon vos besoins
+          });
+          //const validScale = typeof scale === 'number' ? scale : 1;
+          const scaleValue = +scale;
+          //const validScale = isNaN(scaleValue) ? scaleValue : 1
           return (
-            <CardMessage 
+            <CardMessage
+              id ={item.id} 
               image={item.image} 
               name={item.name} 
               message={item.message} 
@@ -160,6 +106,7 @@ const InboxScreen: React.FC<InboxScreenProps> = ({navigation}) : JSX.Element => 
                 userName : item.name,
                 photo: item.image
               })}
+              onDismiss={onDismiss}
             />
           )
         }}
