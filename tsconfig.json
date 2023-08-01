@@ -3,13 +3,15 @@
   "compilerOptions": {
     "outDir": "dist",
     "strict": true,
-    "module": "commonjs",
-    "jsx": "react-native",
+    "module": "esnext",
     "declaration": true,
-    "esModuleInterop": true,
-    "moduleResolution": "Node"
+    "allowJs": true,
+    "declarationMap": true
   },
+
   "include": [
     "src/types/**/*"
-  ]
+  ],
+
+
 }

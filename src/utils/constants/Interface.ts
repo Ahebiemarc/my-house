@@ -17,6 +17,7 @@ export interface CardMessageProps {
   scale?: any;
   onPress?: () => void;
   onDismiss?: (bulleMessage: ItemMessageProps) => void;
+  onLongPress?: () => void;
 }
 
 

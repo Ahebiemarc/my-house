@@ -11,7 +11,8 @@ import { useTheme } from "@react-navigation/native";
 
 
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native'
-type TabParamList = {
+import { RootStackParamList } from './RootNavigator';
+export type TabParamList = RootStackParamList & {
   Home: undefined;
   Wishlists: undefined;
   Maps: undefined;

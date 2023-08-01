@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, Text, Image, TouchableOpacity, Dimensions, StyleSheet } from 'react-native'
 import {card, messageText, postTime, textSection, userImg, userImgWrapper, userInfo, userInfoText, userName } from '../../common/Message';
 import {MaterialIcons} from "@expo/vector-icons";
@@ -22,9 +22,18 @@ export const CardMessage : React.FC<CardMessageProps> = ({id, image, name, messa
     const translateX = useSharedValue(0);
     const iconTranslateX = useSharedValue(0);
     const itemsHeight = useSharedValue(LIST_ITEMS_HEIGHT)
+    const opacity = useSharedValue(1)
 
 
+
+    const onPressHandler = () => {
+      // Vérifier si le PanGestureHandler est actif (translateX.value différent de 0)
+      if (translateX.value === 0 && onPress) {
+        onPress();
+      }
+    };
     const onGestureEvent =  useAnimatedGestureHandler<PanGestureHandlerGestureEvent>({
+
       onActive: (event) => {
         translateX.value = event.translationX;
         iconTranslateX.value = event.translationX;
@@ -35,6 +44,7 @@ export const CardMessage : React.FC<CardMessageProps> = ({id, image, name, messa
         if (shouldBeDismissed) {
           translateX.value = withTiming(-ITEM_WIDTH)
           iconTranslateX.value = withTiming(-ITEM_WIDTH);
+          opacity.value = withTiming(0)
           itemsHeight.value = withTiming(0, undefined, (isFinished) =>{
             if (isFinished && onDismiss) {
               runOnJS(onDismiss)({
@@ -67,9 +77,12 @@ export const CardMessage : React.FC<CardMessageProps> = ({id, image, name, messa
 
     const rContainerStyle = useAnimatedStyle(() => {
       return{
-        height : itemsHeight.value
+        height : itemsHeight.value,
+        opacity : opacity.value
       }
-    }) 
+    })
+
+    
 
 
     const rIconDeleteStyle = useAnimatedStyle(() => {
@@ -78,7 +91,7 @@ export const CardMessage : React.FC<CardMessageProps> = ({id, image, name, messa
       return {opacity};
     })
 
-
+    
   
     return (
       <Animated.View
@@ -93,7 +106,9 @@ export const CardMessage : React.FC<CardMessageProps> = ({id, image, name, messa
         >
           <Animated.View style={[card, rStyle]}>
             <TouchableOpacity 
-              onPress={onPress}
+            activeOpacity={1}
+              onPress={onPressHandler}
+              //onLongPress={onPress}
               >
               <View style={userInfo}>
                 <View style={userImgWrapper}>

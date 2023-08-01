@@ -113,6 +113,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({navigation, route}) => {
       <InputToolbar
           {...props}
           containerStyle = {{
+            flexDirection: 'column-reverse',
             marginLeft: 15,
             marginRight: 15,
             backgroundColor: Colors.white,
@@ -220,6 +221,9 @@ const ChatScreen: React.FC<ChatScreenProps> = ({navigation, route}) => {
             //onInputTextChanged={onInputTextChanged}
             scrollToBottom={true}
             scrollToBottomComponent={scrollToBottomComponent}
+            textInputProps={{
+              fontSize: 20,
+            }}
         />
 
         {/*Platform.OS === 'android' && <KeyboardAvoidingView behavior='padding' />*/}
