@@ -10,7 +10,7 @@ import Icons from "@expo/vector-icons/MaterialIcons";
 import { useTheme } from "@react-navigation/native";
 
 
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native'
+import {StyleSheet, Text, View, TouchableOpacity, GestureResponderEvent} from 'react-native'
 import { RootStackParamList } from './RootNavigator';
 export type TabParamList = RootStackParamList & {
   Home: undefined;
@@ -21,18 +21,18 @@ export type TabParamList = RootStackParamList & {
 };
 type MapTabBottomProps = {
   children: ReactNode;
-  onPress: () => undefined;
+  onPress: ((event: GestureResponderEvent) => void) | undefined
 } 
 
 const Tab = createBottomTabNavigator<TabParamList>();
 
-/*const MapTabBottom = ({children, onPress}: MapTabBottomProps) =>(
+const MapTabBottom = ({children, onPress}: MapTabBottomProps) =>(
   <TouchableOpacity
   style={{
     top: -30,
     justifyContent: 'center',
     alignItems: 'center',
-    ...styles.shadow
+    //...styles.shadow
   }}
   onPress={onPress}
   >
@@ -49,7 +49,29 @@ const Tab = createBottomTabNavigator<TabParamList>();
       {children}
     </View>
   </TouchableOpacity>
-)*/
+)
+
+const tabbarIcon = ({ focused } : {focused:any}, name:string, iconName:any) => (
+  <View style={{
+    alignItems: 'center',
+    justifyContent: 'center',
+    top: 15
+  }}>
+    <Icons
+      name={iconName}
+      size={25}
+      color={Colors.lightRed}
+      style={{
+        opacity: focused ? 1 : 0.7,
+      }}
+    />
+    <Text style={{
+      color: `${Colors.lightRed}`,
+      opacity: focused ? 1 : 0.7,
+      fontSize: 10
+    }}>{name}</Text>
+  </View>
+);
 
 const TabNavigator = () => {
 
@@ -71,53 +93,15 @@ const TabNavigator = () => {
     }}
     >
       <Tab.Screen name="Home" component={HomeScreen} 
-      options={{ tabBarLabel: '',
-      tabBarIcon: ({focused}) => (
-        <View style={{
-          alignItems: 'center',
-          justifyContent: 'center',
-          top: 15
-        }}>
-          <Icons
-                name="home"
-                size={25}
-                color={Colors.lightRed}
-                style={{
-                  opacity: focused ? 1 : 0.7,
-                }}
-              />
-              <Text style={{
-                color: `${Colors.lightRed}`,
-                opacity: focused ? 1 : 0.7,
-                fontSize: 10
-              }}>HOME</Text>
-        </View>
-      )
-     }}
-      />
+      options={{
+        tabBarLabel: '',
+        tabBarIcon: ({ focused }) => tabbarIcon({ focused }, 'HOME', 'home'),
+            
+      }}
+    />
       <Tab.Screen name="Wishlists" component={WishlistsScreen} 
       options={{ tabBarLabel: '',
-      tabBarIcon: ({focused}) => (
-        <View style={{
-          alignItems: 'center',
-          justifyContent: 'center',
-          top: 15
-        }}>
-          <Icons
-                name="favorite"
-                size={25}
-                color={Colors.lightRed}
-                style={{
-                  opacity: focused ? 1 : 0.7,
-                }}
-              />
-              <Text style={{
-                color: `${Colors.lightRed}`,
-                opacity: focused ? 1 : 0.7,
-                fontSize: 10
-              }}>WISHLISTS</Text>
-        </View>
-      )
+      tabBarIcon: ({ focused }) => tabbarIcon({ focused }, 'WISHLISTS', 'favorite'),
      }}
       />
       <Tab.Screen name="Maps" component={MapsScreen} 
@@ -134,82 +118,18 @@ const TabNavigator = () => {
           />
           
       ),
-      tabBarButton: ({onPress, children}) => (
-        <TouchableOpacity
-        //activeOpacity={1}
-        style={{
-          top: -30,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-        onPress={onPress}
-      >
-        <View 
-        style={{
-          width: 70,
-          height: 70,
-          borderRadius: 35,
-          backgroundColor: `${Colors.lightRed}`,
-          opacity: 0.7,
-          ...styles.shadow
-
-
-        }}
-        >
-          {children}
-        </View>
-      </TouchableOpacity>
-      )
+      tabBarButton: ({children, onPress}) => MapTabBottom({children, onPress})
+      
      }}
       />
       <Tab.Screen name="Inbox" component={InboxScreen} 
       options={{ tabBarLabel: '',
-      tabBarIcon: ({focused}) => (
-        <View style={{
-          alignItems: 'center',
-          justifyContent: 'center',
-          top: 15
-        }}>
-          <Icons
-                name="message" 
-                size={25}
-                color={Colors.lightRed}
-                style={{
-                  opacity: focused ? 1 : 0.7,
-                }}
-              />
-              <Text style={{
-                color: `${Colors.lightRed}`,
-                opacity: focused ? 1 : 0.7,
-                fontSize: 10
-              }}>INBOX</Text>
-        </View>
-      ) 
+      tabBarIcon: ({ focused }) => tabbarIcon({ focused }, 'INBOX', 'message'),
     }}
       />
       <Tab.Screen name="Profile" component={ProfileScreen} 
       options={{ tabBarLabel: '',
-      tabBarIcon: ({focused}) => (
-        <View style={{
-          alignItems: 'center',
-          justifyContent: 'center',
-          top: 15
-        }}>
-          <Icons
-                name="person"
-                size={25}
-                color={Colors.lightRed}
-                style={{
-                  opacity: focused ? 1 : 0.7,
-                }}
-              />
-              <Text style={{
-                color: `${Colors.lightRed}`,
-                opacity: focused ? 1 : 0.7,
-                fontSize: 10
-              }}>PROFILE</Text>
-        </View>
-      )
+      tabBarIcon: ({ focused }) => tabbarIcon({ focused }, 'PROFILE', 'person'),
     }}
       />
     </Tab.Navigator>

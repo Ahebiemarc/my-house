@@ -10,19 +10,19 @@ import LogInScreen from "../screens/LogInScreen";
 import SignUpScreen from "../screens/SignUpScreen";
 import TabNavigator from "./TabNavigator";
 import ChatScreen from "../screens/ChatScreen";
-import HomeScreen from "../screens/HomeScreen";
-import WishlistsScreen from "../screens/WishlistsScreen";
-import MapsScreen from "../screens/MapsScreen";
-import InboxScreen from "../screens/InboxScreen";
-import ProfileScreen from "../screens/ProfileScreen";
+import DetailApart from "../screens/DetailApart";
+import { dataProps } from "../utils/constants/Interface";
+import GalleryScreen from "../screens/GalleryScreen";
 
 export type RootStackParamList = {
-  IntroScreen01?: undefined,
-  IntroScreen02?: undefined,
-  LogInScreen?: undefined,
-  SignUpScreen?: undefined,
-  TabNavigator?: undefined,
-  ChatScreen?: {userName: string, photo?: string},
+  IntroScreen01: undefined,
+  IntroScreen02: undefined,
+  LogInScreen: undefined,
+  SignUpScreen: undefined,
+  TabNavigator: undefined,
+  ChatScreen: {userName: string, photo?: string},
+  DetailApart: {data: dataProps},
+  GalleryScreen: undefined,
 
 };
 
@@ -48,7 +48,8 @@ const RootNavigator = () => {
         <RootStack.Screen name="SignUpScreen" component={SignUpScreen} />
         <RootStack.Screen name="TabNavigator" component={TabNavigator} />
         <RootStack.Screen name="ChatScreen" component={ChatScreen} />
-
+        <RootStack.Screen name="DetailApart" component={DetailApart} />
+        <RootStack.Screen name="GalleryScreen" component={GalleryScreen} />
       </RootStack.Group>
     </RootStack.Navigator>
   );

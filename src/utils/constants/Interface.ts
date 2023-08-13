@@ -1,3 +1,5 @@
+import { minMaxImg } from "./Type";
+
 // Item de bulle de message
 export interface ItemMessageProps {
   id: string;
@@ -20,4 +22,30 @@ export interface CardMessageProps {
   onLongPress?: () => void;
 }
 
+// data appart props
+export interface dataProps{
+  id: string;
+  location: string;
+  title: string;
+  date: string;
+  rent: string;
+  description: string[];
+  price: string;
+  image: minMaxImg;
+  category?: CategoriesProps[]
+}
 
+
+export interface review {
+  imageUser : string,
+  comment: string;
+  star?: number,
+  date: string
+}
+
+
+export interface CategoriesProps {
+  id: string;
+  name: string;
+  icon: string;
+}

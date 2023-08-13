@@ -1,53 +1,30 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { RefreshControl, View, FlatList,Dimensions, StyleSheet, Animated } from 'react-native'
+import { RefreshControl, View, FlatList,Dimensions, StyleSheet, Animated, TouchableOpacity } from 'react-native'
 import Card from './Card';
 import Colors from '../../utils/constants/Colors';
-
+import { SharedElement } from 'react-navigation-shared-element';
+import { dataProps } from '../../utils/constants/Interface';
+import {
+    NativeStackScreenProps,   
+  } from "@react-navigation/native-stack";
+import { TabParamList } from '../../navigators/TabNavigator';
 
 const {width, height} = Dimensions.get('screen');
 
 const ITEM_WIDTH:number = width;
 const ITEM_HEIGHT:number = height
 const HEADER_HEIGHT = 15;
-const data = [
-    {
-        location : 'Tunis, Tunisie',
-        title: 'Single Appart',
-        date: '10 Oct 2023',
-        rent: 'Month',
-        description: [
-            'Mini crossbody bag available in various colours. Featuring two compartments. Handles and detachable crossbody shoulder strap. Lined interior. Clasp with two metal pieces.',
-            'Height x Length x Width: 14 x 21.5 x 4.5 cm. / 5.5 x 8.4 x 1.7"'
-        ],
-        price: '418 dt'
-      },
-      {
-        location : 'Monastir, Tunisie',
-        title: 'Couple Appart',
-        date: '10 Oct 2023',
-        rent: 'Month',
-        description: [
-            'Mini crossbody bag available in various colours. Featuring two compartments. Handles and detachable crossbody shoulder strap. Lined interior. Clasp with two metal pieces.',
-            'Height x Length x Width: 14 x 21.5 x 4.5 cm. / 5.5 x 8.4 x 1.7"'
-        ],
-        price: '718 dt'
-      },
-      {
-        location : 'Ariana , Tunis',
-        title: 'Student Appart',
-        date: '10 Oct 2023',
-        rent: 'Month',
-        description: [
-            'Mini crossbody bag available in various colours. Featuring two compartments. Handles and detachable crossbody shoulder strap. Lined interior. Clasp with two metal pieces.',
-            'Height x Length x Width: 14 x 21.5 x 4.5 cm. / 5.5 x 8.4 x 1.7"'
-        ],
-        price: '518 dt'
-      },
-      
-]
 
 
-const Cards = () => {
+type CardNavigationProps = NativeStackScreenProps<TabParamList, 'Home'>
+
+interface CardsProps{
+    data: dataProps[];
+    
+}
+
+
+const Cards:React.FC<CardsProps & CardNavigationProps>  = ({data, navigation, route}) => {
     const [refreshing, setRefreshing] = useState(false);
     const scrollY = useRef(new Animated.Value(0)).current;
     const offsetAnim = useRef(new Animated.Value(0)).current;
@@ -166,13 +143,14 @@ const Cards = () => {
         outputRange: [0, -HEADER_HEIGHT],
         extrapolate: 'clamp'
     }); 
+
     
 
   return (
     <Animated.View
     ref={listContainerRef}
     style={{
-        marginTop: -HEADER_HEIGHT + 15,
+        marginTop: 0,
         transform: [{ translateY: Translate}],
         //backgroundColor: "#ccc"
         
@@ -211,13 +189,22 @@ const Cards = () => {
                 />
             }
 
-            renderItem={({item}) =>(
-                <Card location={item.location} title={item.title} date={item.date} rent={item.rent} price={item.price}  
+            renderItem={({item, index}) =>(
+                    <Card
+                    images={item.image}
+                    location={item.location} 
+                    title={item.title} 
+                    date={item.date} 
+                    rent={item.rent} 
+                    price={item.price}
+                    onPress={() => navigation?.navigate('DetailApart', {data : item}
+                    )}
+                      
                 />
             )}
             ListFooterComponent={() => (
                 // Espace vide à la fin de la liste pour le débordement du scroll
-                <View style={{ height: ITEM_HEIGHT / 2.9 }} /> 
+                <View style={{ height: ITEM_HEIGHT / 2.5 }} /> 
               )}
         
         />
@@ -225,6 +212,8 @@ const Cards = () => {
 
   )
 }
+
+
 
 /*const styles = StyleSheet.create({
     header: {

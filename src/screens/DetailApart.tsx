@@ -1,10 +1,35 @@
-import React from 'react'
-import { View } from 'react-native'
+import React, { useRef } from 'react'
+import {SafeAreaView, StyleSheet, View} from 'react-native'
+import {
+  NativeStackScreenProps,   
+} from "@react-navigation/native-stack";
+import { RootStackParamList } from '../navigators/RootNavigator';
+import Header from '../components/DetailApart/Header'
+import Content from '../components/DetailApart/Content';
 
-const DetailApart = () => {
+type DetailApartNavigationProps  = NativeStackScreenProps<RootStackParamList, 'DetailApart'>;
+
+
+
+
+const DetailApart: React.FC<DetailApartNavigationProps> = ({route, navigation}) => {
+
+  
   return (
-    <View>DetailApart</View>
+    <SafeAreaView style={{
+      flex: 1,
+      }}>
+    <Header {...{route, navigation}}/>
+    <Content {...{route, navigation}} />
+
+    
+    </SafeAreaView>
   )
 }
 
-export default DetailApart
+
+const styles = StyleSheet.create({
+  
+})
+
+export default DetailApart;

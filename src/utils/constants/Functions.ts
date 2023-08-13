@@ -1,3 +1,4 @@
+import Animated from "react-native-reanimated";
 
 
 // function to format the date to long ago
@@ -16,4 +17,25 @@ export function formatDateToDayAgo(date: Date): string {
       return `${diffInDays} days ago`;
     }
     
-  }
+}
+
+
+export const onScrollEvent = (contentOffset: {
+  x?: Animated.Node<number>;
+  y?: Animated.Node<number>;
+}) => {
+  //console.log();
+  
+  return (...args: any[]) => {
+    // Utilisez contentOffset.x et contentOffset.y comme vous le souhaitez ici
+    // args contiendra les autres arguments passés à la fonction
+  };
+};
+
+
+
+
+
+
+
+
