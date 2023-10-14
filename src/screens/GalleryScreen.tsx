@@ -41,8 +41,8 @@ const GalleryScreen = () => {
         fetchImages();
     }, []);
 
-    const topRef = React.useRef<FlatList<any>>(null);
-    const thumbRef = React.useRef<FlatList<any>>(null);
+    const topRef = React.useRef<FlatList>(null);
+    const thumbRef = React.useRef<FlatList>(null);
     const [activeIndex, setActiveIndex] = React.useState(0);
     const scrollToActiveIndex = (index) =>{
         setActiveIndex(index);
@@ -76,7 +76,9 @@ const GalleryScreen = () => {
                 data={images}
                 keyExtractor={item => item.id.toString()}
                 horizontal
+                bounces={false}
                 pagingEnabled
+                scrollEventThrottle={16}
                 decelerationRate='fast'
                 showsHorizontalScrollIndicator={false}
                 onMomentumScrollEnd={ev => {
@@ -109,6 +111,7 @@ const GalleryScreen = () => {
                 data={images}
                 keyExtractor={item => item.id.toString()}
                 horizontal
+                scrollEventThrottle={16}
                 decelerationRate='fast'
                 style={{
                     position: 'absolute',

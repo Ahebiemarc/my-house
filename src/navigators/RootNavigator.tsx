@@ -13,6 +13,8 @@ import ChatScreen from "../screens/ChatScreen";
 import DetailApart from "../screens/DetailApart";
 import { dataProps } from "../utils/constants/Interface";
 import GalleryScreen from "../screens/GalleryScreen";
+import { createSharedElementStackNavigator } from "react-navigation-shared-element";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export type RootStackParamList = {
   IntroScreen01: undefined,
@@ -21,7 +23,7 @@ export type RootStackParamList = {
   SignUpScreen: undefined,
   TabNavigator: undefined,
   ChatScreen: {userName: string, photo?: string},
-  DetailApart: {data: dataProps},
+  DetailApart: {data: dataProps, fav:boolean},
   GalleryScreen: undefined,
 
 };
@@ -35,7 +37,8 @@ const RootStack = createNativeStackNavigator<RootStackParamList>();
 
 const RootNavigator = () => {
   return (
-    <RootStack.Navigator>
+    <GestureHandlerRootView style={{flex:1}}>
+      <RootStack.Navigator>
       <RootStack.Group
         screenOptions={{
           headerShown: false,
@@ -48,10 +51,13 @@ const RootNavigator = () => {
         <RootStack.Screen name="SignUpScreen" component={SignUpScreen} />
         <RootStack.Screen name="TabNavigator" component={TabNavigator} />
         <RootStack.Screen name="ChatScreen" component={ChatScreen} />
-        <RootStack.Screen name="DetailApart" component={DetailApart} />
+        <RootStack.Screen name="DetailApart" component={DetailApart}
+          
+        />
         <RootStack.Screen name="GalleryScreen" component={GalleryScreen} />
       </RootStack.Group>
     </RootStack.Navigator>
+    </GestureHandlerRootView>
   );
 };
 

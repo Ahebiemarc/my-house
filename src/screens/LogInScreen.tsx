@@ -7,7 +7,6 @@ import {
   useWindowDimensions,
 } from "react-native";
 import React from "react";
-import { RootStackParamList } from "../navigators/RootNavigator";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useTheme } from "@react-navigation/native";
 import Icons from "@expo/vector-icons/MaterialIcons";
@@ -15,9 +14,7 @@ import Artwork03 from "../components/artworks/Artwork03";
 import { LOG_IN_SCREEN } from "../utils/constants";
 import PrimaryButton from "../components/PrimaryButton";
 import Animated, { FadeInDown, FadeInUp } from "react-native-reanimated";
-import {
-  NativeStackScreenProps,   
-} from "@react-navigation/native-stack";
+
 
 import {LogInScreenProps} from '../utils/constants/Type'
 

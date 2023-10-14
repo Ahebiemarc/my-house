@@ -1,12 +1,13 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, SafeAreaView } from 'react-native'
+import FavoriADD from '../components/FavoriADD';
 
 const WishlistsScreen = () => {
   return (
-    <View 
-    style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text>WishlistsScreen</Text>
-    </View>
+    <SafeAreaView 
+    style={{flex: 1,}}>
+        <FavoriADD />
+    </SafeAreaView>
   );
 };
 

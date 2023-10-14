@@ -1,4 +1,4 @@
-import { CategoriesProps, dataProps, review } from "./constants/Interface";
+import { CategoriesProps, dataProps,  } from "./constants/Interface";
 import { minMaxImg } from "./constants/Type";
 
 export const imagesT: minMaxImg = [
@@ -46,6 +46,7 @@ export const imagesT: minMaxImg = [
           ],
           price: '418 dt',
           image: imagesT,
+          fav: false,
 
         },
         {
@@ -60,6 +61,8 @@ export const imagesT: minMaxImg = [
           ],
           price: '718 dt',
           image: imagesT,
+          fav: false,
+
         },
         {
           id: '1',
@@ -73,12 +76,13 @@ export const imagesT: minMaxImg = [
           ],
           price: '518 dt',
           image: imagesT,
+          fav: true,
         },     
   ];
 
 
 
-  const reviews: review[] = [
+  /*const reviews: Review[] = [
     {
       imageUser: 'user1.jpg',
       comment: 'Excellent service. Highly recommended!',
@@ -139,4 +143,4 @@ export const imagesT: minMaxImg = [
       star: 4,
       date: '2023-07-22',
     },
-  ];
+  ];*/

@@ -13,6 +13,7 @@ import Icons from "@expo/vector-icons/MaterialIcons";
 import Colors from "../../utils/constants/Colors";
 import { minMaxImg } from "../../utils/constants/Type";
 import { imagesT } from "../../utils/Data";
+import { SharedElement } from "react-navigation-shared-element";
 
 const { width, height } = Dimensions.get("window");
 
@@ -80,10 +81,12 @@ interface cardProps {
   price: string;
   onPress: () => void;
   images: minMaxImg[];
+  shardID?: string;
+  fav?: boolean;
 }
 
-const Card: FC<cardProps> = ({ location, title, date, rent, price, onPress, images }) => {
-  const [isFavorite, setIsFavorite] = useState(false);
+const Card: FC<cardProps> = ({ location, title, date, rent, price, onPress, images, fav}) => {
+  const [isFavorite, setIsFavorite] = useState(fav);
 
   const scrollX = useRef(new Animated.Value(0)).current;
 
@@ -120,14 +123,18 @@ const Card: FC<cardProps> = ({ location, title, date, rent, price, onPress, imag
             [{ nativeEvent: { contentOffset: { x: scrollX } } }],
             { useNativeDriver: true }
           )}
-          renderItem={({ item }) => {
+          renderItem={({ item, index }) => {
             return (
-              <TouchableOpacity
-              activeOpacity={1}
-              onPress={onPress}
-              >
-                <Image source={item} style={styles.cardImage} />
-              </TouchableOpacity>
+              
+                <TouchableOpacity
+                  activeOpacity={1}
+                  onPress={onPress}
+                >
+                    <Image 
+                    source={item} style={styles.cardImage} 
+                      
+                    />
+                </TouchableOpacity>
             );
           }}
         />
@@ -291,5 +298,7 @@ const styles = StyleSheet.create({
     marginBottom: SPACING + 4,
   },
 });
+
+
 
 export default Card;

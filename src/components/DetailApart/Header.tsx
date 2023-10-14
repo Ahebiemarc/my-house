@@ -8,6 +8,8 @@ import { indicatonPosition } from '../cardsProduct/Card';
 import { imagesT } from '../../utils/Data';
 import Constants from "expo-constants";
 import { MAX_HEADER_HEIGHT } from './Model';
+import { SharedElement } from 'react-navigation-shared-element';
+import { useNavigation } from '@react-navigation/native';
 
 
 type DetailApartNavigationProps  = NativeStackScreenProps<RootStackParamList, 'DetailApart'>;
@@ -27,9 +29,10 @@ export const IMAGE_HEIGHT = height * 0.400;
 const Header:React.FC<DetailApartNavigationProps > = ({route , navigation}) => {
 
     const scrollX = useRef(new Animated.Value(0)).current;
-    const {data} = route.params;
+    const {data, fav} = route.params;
 
-    const [isFavorite, setIsFavorite] = useState(false);
+
+    const [isFavorite, setIsFavorite] = useState(fav);
 
   const handleFavoritePress = () => {
     setIsFavorite((prevIsFavorite) => !prevIsFavorite);
@@ -47,7 +50,7 @@ const Header:React.FC<DetailApartNavigationProps > = ({route , navigation}) => {
         <Icons
           name="favorite"
           size={30}
-          color={isFavorite ? Colors.lightRed : "white"}
+          color={fav ? Colors.lightRed : "white"}
         />
       </TouchableOpacity>
     )
@@ -60,7 +63,7 @@ const Header:React.FC<DetailApartNavigationProps > = ({route , navigation}) => {
       <TouchableOpacity
         activeOpacity={1}
         style={styles.backIconContainer}
-        //onPress={(handleFavoritePress)}
+        onPress={() => navigation.goBack()}
       >
         <Icons
           name="arrow-back-ios"
@@ -77,12 +80,13 @@ const Header:React.FC<DetailApartNavigationProps > = ({route , navigation}) => {
   const renderItem = ({item, index}) => {
     return(
  
-        <TouchableOpacity
+          <TouchableOpacity
             activeOpacity={1}
             onPress={() => navigation.navigate('GalleryScreen')}
-        >
-            <Image source={item} style={styles.cardImage} />
-        </TouchableOpacity>
+          >
+              <Image source={item} style={styles.cardImage} />
+          </TouchableOpacity>
+
     )
   }
   const PaginationC = () => {
@@ -195,7 +199,6 @@ const styles = StyleSheet.create({
       marginTop: -(DOT_SIZE - 4),
       marginLeft: -(DOT_SIZE + 44),
     },
-})
-
+});
 
 export default Header

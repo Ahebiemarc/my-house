@@ -34,8 +34,7 @@ const AVATAR_SIZE = 70;
 const ITEM_SIZE = AVATAR_SIZE + SPACING - 5;
 
 const InboxScreen: React.FC<InboxScreenProps> = ({
-  navigation,
-}): JSX.Element => {
+  navigation}): JSX.Element => {
   const scrollY = useRef(new Animated.Value(0)).current;
 
   const [messagesBulle, setMessagesBulle] = useState(DATA);

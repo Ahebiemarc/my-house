@@ -14,6 +14,7 @@ type DetailApartNavigationProps  = NativeStackScreenProps<RootStackParamList, 'D
 
 const DetailApart: React.FC<DetailApartNavigationProps> = ({route, navigation}) => {
 
+  const AppartID = route.params.data.id
   
   return (
     <SafeAreaView style={{
@@ -30,6 +31,8 @@ const DetailApart: React.FC<DetailApartNavigationProps> = ({route, navigation}) 
 
 const styles = StyleSheet.create({
   
-})
+});
+
+
 
 export default DetailApart;

@@ -1,6 +1,6 @@
 import React, {useRef, useEffect} from 'react'
-import { ScrollView, StyleSheet, View, Animated, Dimensions } from 'react-native'
-import { Categorie, Description, DescriptionLocation, UserP } from './DetailA'
+import {StyleSheet, Dimensions } from 'react-native'
+import { Categorie, Description, DescriptionLocation, UserP, ReviewLitle, ChatButton } from './DetailA'
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../navigators/RootNavigator';
 import BottomSheet, {BottomSheetScrollView} from '@gorhom/bottom-sheet'
@@ -30,6 +30,8 @@ const Content:React.FC<DetailApartNavigationProps> = ({route, navigation}) => {
             <Description description={data.description}/>
             <Categorie />
             <UserP />
+            <ReviewLitle />
+            <ChatButton />
           </BottomSheetScrollView>
     </BottomSheet>
   )

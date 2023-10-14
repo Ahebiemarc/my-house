@@ -10,7 +10,6 @@ import { SharedElement } from 'react-navigation-shared-element';
 import { dataProps } from '../utils/constants/Interface';
 import { CATEGORIES, data } from '../utils/Data';
 
-import { useNavigation } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { TabParamList } from '../navigators/TabNavigator';
 
@@ -18,7 +17,6 @@ import { TabParamList } from '../navigators/TabNavigator';
 type CardNavigationProps = NativeStackScreenProps<TabParamList, 'Home'>
 
 const Categories: React.FC<CardNavigationProps> = ({route, navigation}) => {
-
 
   const itemC = data[0];
   const selectedItemCIndex = CATEGORIES.findIndex((c) => c.id === itemC.id)
@@ -53,7 +51,7 @@ const Categories: React.FC<CardNavigationProps> = ({route, navigation}) => {
       />
     </View>
 
-    <Cards  data={data} navigation={navigation} route={route} />
+    <Cards  data={data} navigation={navigation} route={route}   />
     </View>
   );
 };

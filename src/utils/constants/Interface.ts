@@ -1,5 +1,5 @@
 import { minMaxImg } from "./Type";
-
+import {ImageSourcePropType} from 'react-native'
 // Item de bulle de message
 export interface ItemMessageProps {
   id: string;
@@ -32,15 +32,18 @@ export interface dataProps{
   description: string[];
   price: string;
   image: minMaxImg;
-  category?: CategoriesProps[]
+  category?: CategoriesProps[];
+  fav: boolean;
 }
 
 
-export interface review {
-  imageUser : string,
+export interface ReviewItem {
+  id: string,
+  user:  string
+  imageUser : ImageSourcePropType,
   comment: string;
   star?: number,
-  date: string
+  date: string;
 }
 
 

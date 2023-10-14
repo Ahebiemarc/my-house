@@ -191,13 +191,16 @@ const Cards:React.FC<CardsProps & CardNavigationProps>  = ({data, navigation, ro
 
             renderItem={({item, index}) =>(
                     <Card
+                    //shardID={`itemPhoto.${item.id}`}
                     images={item.image}
                     location={item.location} 
                     title={item.title} 
                     date={item.date} 
                     rent={item.rent} 
                     price={item.price}
-                    onPress={() => navigation?.navigate('DetailApart', {data : item}
+                    fav={item.fav}
+                    onPress={() => navigation?.navigate('DetailApart', {data : item, fav: item.fav}
+                    
                     )}
                       
                 />
